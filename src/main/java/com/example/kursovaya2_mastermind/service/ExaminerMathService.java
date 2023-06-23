@@ -22,14 +22,15 @@ public class ExaminerMathService implements ExaminerService {
     @Override
     public Collection<Question> getQuestions(int amount) {
 
-        if (amount > questionService.getAll().size()) {
-            throw new AmountVeryBigException();
-        }
+//        if (amount > questionService.getAll().size()) {
+//            throw new AmountVeryBigException();
+//        }
 
         Set<Question> questionSet = new HashSet<>(amount);
-        for (int i = 0; i < amount; i++) {
+        while (questionSet.size() < amount) {
             questionSet.add(questionService.getRandomQuestion());
         }
+
         return Collections.unmodifiableSet(questionSet);
     }
 }
